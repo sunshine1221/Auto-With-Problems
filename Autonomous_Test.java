@@ -25,6 +25,7 @@ public class Autonomous_Test extends LinearOpMode {
     DcMotor wheel;
     @Override
     public void runOpMode() throws InterruptedException {
+        //Declaring motors through hardwareMap
         motor1 = hardwareMap.dcMotor.get("claw");
         motor = hardwareMap.dcMotor.get("motor");
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
@@ -32,14 +33,30 @@ public class Autonomous_Test extends LinearOpMode {
         backLeft = hardwareMap.dcMotor.get("backLeft");
         backRight = hardwareMap.dcMotor.get("backRight");
         wheel = hardwareMap.dcMotor.get("wheel");
+        //Encoders reset and initialized
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
+        //Move lift up 1444 ticks, or to where the top level is
         movingvoid(1444, motor);
+        //Moving chassis forward 12000 ticks
         movingvoid(12000, frontLeft);
         movingvoid(12000, backLeft);
         movingvoid(-12000, frontRight);
         movingvoid(-12000, backRight);
+        //Opening claw
         motor1.setPower(-0.25);
         sleep(500);
         motor1.setPower(0);
